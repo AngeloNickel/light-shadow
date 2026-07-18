@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Light &amp; Shadow — Weapon &amp; Inventory</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d0d12;
+    color: #e8e4da;
+    font-family: Georgia, 'Times New Roman', serif;
+    min-height: 100vh;
+    padding: 3rem 1.5rem;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; }
+  h1 {
+    font-size: 2rem;
+    font-weight: normal;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.4rem;
+  }
+  h1 .light { color: #f0d890; }
+  h1 .shadow { color: #8a7fb8; }
+  .sub {
+    color: #8a8578;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    font-size: 1.1rem;
+    font-weight: normal;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b0a88f;
+    border-bottom: 1px solid #2a2a35;
+    padding-bottom: 0.5rem;
+    margin: 2.5rem 0 1.2rem;
+  }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+  a.card {
+    display: block;
+    background: #16161f;
+    border: 1px solid #2a2a35;
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  a.card:hover { border-color: #f0d890; transform: translateY(-2px); }
+  a.card .name { font-size: 1.15rem; color: #f0d890; margin-bottom: 0.35rem; }
+  a.card .desc { font-size: 0.9rem; color: #8a8578; line-height: 1.5; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+  figure {
+    background: #16161f;
+    border: 1px solid #2a2a35;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption {
+    padding: 0.7rem 1rem;
+    font-size: 0.88rem;
+    color: #8a8578;
+    font-style: italic;
+  }
+  footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #2a2a35;
+    color: #55524a;
+    font-size: 0.8rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1><span class="light">Light</span> &amp; <span class="shadow">Shadow</span> — Weapon &amp; Inventory</h1>
+  <p class="sub">Konzeptseiten zu Waffen und Inventar-Relikten</p>
+
+  <h2>Interaktive Seiten</h2>
+  <div class="cards">
+    <a class="card" href="twilight_watch.new.html">
+      <div class="name">Twilight Watch</div>
+      <div class="desc">Produktions-Relikt — aktuelle Fassung der interaktiven 3D-Ansicht.</div>
+    </a>
+    <a class="card" href="twilight_watch.html">
+      <div class="name">Twilight Watch (ältere Fassung)</div>
+      <div class="desc">Vorherige Version zum Vergleich.</div>
+    </a>
+  </div>
+
+  <h2>Konzeptzeichnungen</h2>
+  <div class="gallery">
+    <figure><img src="twilight_watch.png" alt="Twilight Watch" loading="lazy"><figcaption>Twilight Watch</figcaption></figure>
+    <figure><img src="twilight_pedestal.png" alt="Twilight Pedestal" loading="lazy"><figcaption>Twilight Pedestal</figcaption></figure>
+    <figure><img src="bow_lightguide.png" alt="Bogen — Lightguide" loading="lazy"><figcaption>Bogen — Lightguide</figcaption></figure>
+    <figure><img src="spear_lightguide.png" alt="Speer — Lightguide" loading="lazy"><figcaption>Speer — Lightguide</figcaption></figure>
+  </div>
+
+  <footer>Light &amp; Shadow — Konzeptmaterial, Stand Juli 2026</footer>
+</div>
+</body>
+</html>
