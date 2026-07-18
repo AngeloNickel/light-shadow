@@ -1319,3 +1319,21 @@ document.addEventListener('keydown', function (e) {
 </script>
 </body>
 </html>
+
+<script>
+(function () {
+  var pages = ["twilight_watch.html", "heroine_stage.html", "light_presentation.html"];
+  var file = location.pathname.split("/").pop();
+  var i = pages.indexOf(file);
+  if (i < 0) return;
+  var prev = pages[(i + pages.length - 1) % pages.length];
+  var next = pages[(i + 1) % pages.length];
+  var st = document.createElement("style");
+  st.textContent = "#page-nav{position:fixed;right:14px;bottom:14px;z-index:999;display:flex;gap:6px;font-family:Georgia,serif}#page-nav a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(22,22,31,.78);border:1px solid rgba(240,216,144,.35);color:#f0d890;text-decoration:none;font-size:20px;line-height:1;transition:background .2s}#page-nav a:hover{background:rgba(240,216,144,.25)}";
+  document.head.appendChild(st);
+  var nav = document.createElement("div");
+  nav.id = "page-nav";
+  nav.innerHTML = '<a href="' + prev + '" title="Previous page">‹</a><a href="index.html" title="Overview (Esc)">⌂</a><a href="' + next + '" title="Next page">›</a>';
+  document.body.appendChild(nav);
+})();
+</script>
