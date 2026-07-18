@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Light &amp; Shadow — Konzeptseiten</title>
+<title>Light &amp; Shadow — Concept Pages</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -59,21 +59,53 @@
   a.card:hover { border-color: #f0d890; transform: translateY(-2px); }
   a.card .name { font-size: 1.15rem; color: #f0d890; margin-bottom: 0.35rem; }
   a.card .desc { font-size: 0.9rem; color: #8a8578; line-height: 1.5; }
-  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
   figure {
     background: #16161f;
     border: 1px solid #2a2a35;
     border-radius: 10px;
     overflow: hidden;
+    transition: border-color 0.2s;
   }
+  figure:hover { border-color: #f0d890; }
   figure.hero { grid-column: 1 / -1; }
-  figure img { display: block; width: 100%; height: auto; }
+  figure img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    object-position: top;
+    cursor: zoom-in;
+  }
+  figure.hero img { height: 240px; object-position: center; }
   figcaption {
     padding: 0.7rem 1rem;
     font-size: 0.88rem;
     color: #8a8578;
     font-style: italic;
   }
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 8, 12, 0.94);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    z-index: 100;
+    cursor: zoom-out;
+    padding: 1.5rem;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 95vw;
+    max-height: 88vh;
+    border-radius: 6px;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+  }
+  #lightbox .lb-caption { color: #b0a88f; font-style: italic; font-size: 0.95rem; }
+  #lightbox .lb-hint { color: #55524a; font-size: 0.75rem; }
   footer {
     margin-top: 3rem;
     padding-top: 1rem;
@@ -86,19 +118,19 @@
 <body>
 <div class="wrap">
   <h1><span class="light">Light</span> &amp; <span class="shadow">Shadow</span></h1>
-  <p class="sub">Konzeptseiten zu Waffen und Inventar-Relikten</p>
+  <p class="sub">Concept pages for weapons and inventory relics</p>
 
-  <h2>Gesamtkonzept</h2>
+  <h2>Overall Concept</h2>
   <div class="gallery">
-    <figure class="hero"><img src="concept_sheet.png" alt="Light &amp; Shadow — Gesamtkonzept" loading="lazy"><figcaption>Gesamtkonzept</figcaption></figure>
+    <figure class="hero"><img src="concept_sheet.png" alt="Light &amp; Shadow — overall concept" loading="lazy"><figcaption>Concept Sheet</figcaption></figure>
   </div>
 
-  <h2>Konzeptzeichnungen</h2>
+  <h2>Concept Art</h2>
 
-  <h3>Waffen</h3>
+  <h3>Weapons</h3>
   <div class="gallery">
-    <figure><img src="spear_lightguide.png" alt="Speer — Lightguide" loading="lazy"><figcaption>Speer — Lightguide</figcaption></figure>
-    <figure><img src="bow_lightguide.png" alt="Bogen — Lightguide" loading="lazy"><figcaption>Bogen — Lightguide</figcaption></figure>
+    <figure><img src="spear_lightguide.png" alt="Spear — Lightguide" loading="lazy"><figcaption>Spear — Lightguide</figcaption></figure>
+    <figure><img src="bow_lightguide.png" alt="Bow — Lightguide" loading="lazy"><figcaption>Bow — Lightguide</figcaption></figure>
   </div>
 
   <h3>Skilltree</h3>
@@ -107,30 +139,57 @@
     <figure><img src="twilight_pedestal.png" alt="Twilight Pedestal" loading="lazy"><figcaption>Twilight Pedestal</figcaption></figure>
   </div>
 
-  <h3>Charaktere</h3>
+  <h3>Characters</h3>
   <div class="gallery">
     <figure><img src="heroine_sheet.png" alt="Heroine" loading="lazy"><figcaption>Heroine</figcaption></figure>
     <figure><img src="light_production.png" alt="Light" loading="lazy"><figcaption>Light</figcaption></figure>
     <figure><img src="shadow_sheet.png" alt="Shadow" loading="lazy"><figcaption>Shadow</figcaption></figure>
   </div>
 
-  <h2>Interaktive Seiten</h2>
+  <h2>Interactive Pages</h2>
   <div class="cards">
     <a class="card" href="twilight_watch.html">
       <div class="name">Twilight Watch</div>
-      <div class="desc">Produktions-Relikt — interaktive 3D-Ansicht.</div>
+      <div class="desc">Production relic — interactive 3D view.</div>
     </a>
     <a class="card" href="heroine_stage.html">
-      <div class="name">Heroine — Bühne</div>
-      <div class="desc">Interaktive Bühnen-Ansicht der Heldin.</div>
+      <div class="name">Heroine — Stage</div>
+      <div class="desc">Interactive stage view of the heroine.</div>
     </a>
     <a class="card" href="light_presentation.html">
-      <div class="name">Light — Präsentation</div>
-      <div class="desc">Konzept-Präsentation des Licht-Begleiters.</div>
+      <div class="name">Light — Presentation</div>
+      <div class="desc">Concept presentation of the light companion.</div>
     </a>
   </div>
 
-  <footer>Light &amp; Shadow — Konzeptmaterial, Stand Juli 2026</footer>
+  <footer>Light &amp; Shadow — concept material, July 2026</footer>
 </div>
+
+<div id="lightbox">
+  <img src="" alt="">
+  <div class="lb-caption"></div>
+  <div class="lb-hint">Click anywhere or press Esc to close</div>
+</div>
+
+<script>
+(function () {
+  var lb = document.getElementById('lightbox');
+  var lbImg = lb.querySelector('img');
+  var lbCap = lb.querySelector('.lb-caption');
+  document.querySelectorAll('.gallery img').forEach(function (img) {
+    img.addEventListener('click', function () {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      var cap = img.closest('figure').querySelector('figcaption');
+      lbCap.textContent = cap ? cap.textContent : '';
+      lb.classList.add('open');
+    });
+  });
+  lb.addEventListener('click', function () { lb.classList.remove('open'); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lb.classList.remove('open');
+  });
+})();
+</script>
 </body>
 </html>
