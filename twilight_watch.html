@@ -685,6 +685,65 @@ var dialShadowTex=makeTex(2048,2048,function(g,S){
   g.fillStyle=vg; g.beginPath(); g.arc(cx,cy,R,0,7); g.fill();
 });
 
+var dialRestTex=makeTex(2048,2048,function(g,S){
+  var cx=S/2, cy=S/2, R=S*0.492, i, a;
+  function P(f){ return R*f; }
+  function rnd(n,s){ var v=Math.sin(n*127.1+s*311.7)*43758.5453; return v-Math.floor(v); }
+  /* aged neutral brass base */
+  var bg=g.createRadialGradient(cx,cy,0,cx,cy,R);
+  bg.addColorStop(0,'#93744a'); bg.addColorStop(0.5,'#84683f');
+  bg.addColorStop(0.85,'#715732'); bg.addColorStop(1,'#5c4527');
+  g.fillStyle=bg; g.beginPath(); g.arc(cx,cy,R,0,7); g.fill();
+  /* circular machine brushing */
+  for(i=0;i<90;i++){
+    var rr=P(0.08+ (i/90)*0.90 + (rnd(i,1)-0.5)*0.008);
+    var lt=rnd(i,2)>0.5;
+    g.strokeStyle=lt?'rgba(214,186,138,'+(0.02+rnd(i,3)*0.05).toFixed(3)+')'
+                    :'rgba(52,38,18,'+(0.02+rnd(i,4)*0.06).toFixed(3)+')';
+    g.lineWidth=P(0.0016);
+    g.beginPath(); g.arc(cx,cy,rr,0,7); g.stroke();
+  }
+  /* engraved ring pairs (shadow + highlight) */
+  function engrave(rf,w){
+    g.strokeStyle='rgba(46,32,14,0.55)'; g.lineWidth=P(w);
+    g.beginPath(); g.arc(cx,cy,P(rf),0,7); g.stroke();
+    g.strokeStyle='rgba(224,198,150,0.30)'; g.lineWidth=P(w*0.6);
+    g.beginPath(); g.arc(cx,cy,P(rf)+P(w)*1.1,0,7); g.stroke();
+  }
+  engrave(0.60,0.008); engrave(0.86,0.006);
+  /* recessed centre disc under the star */
+  var cd=g.createRadialGradient(cx,cy,0,cx,cy,P(0.44));
+  cd.addColorStop(0,'rgba(40,28,12,0.30)');
+  cd.addColorStop(0.85,'rgba(40,28,12,0.10)');
+  cd.addColorStop(1,'rgba(40,28,12,0)');
+  g.fillStyle=cd; g.beginPath(); g.arc(cx,cy,P(0.44),0,7); g.fill();
+  /* ticks */
+  for(i=0;i<60;i++){
+    a=i/60*Math.PI*2;
+    var mj=(i%5===0);
+    g.save(); g.translate(cx+Math.cos(a)*P(0.93), cy+Math.sin(a)*P(0.93)); g.rotate(a+Math.PI/2);
+    g.fillStyle=mj?'rgba(58,42,20,0.85)':'rgba(58,42,20,0.5)';
+    g.fillRect(-(mj?P(0.010):P(0.005)), -(mj?P(0.035):P(0.020)), (mj?P(0.020):P(0.010)), (mj?P(0.07):P(0.04)));
+    g.restore();
+  }
+  /* small engraved diamonds at the cardinals */
+  for(i=0;i<4;i++){
+    a=i*Math.PI/2 - Math.PI/2;
+    g.save(); g.translate(cx+Math.cos(a)*P(0.73), cy+Math.sin(a)*P(0.73)); g.rotate(a+Math.PI/2);
+    g.fillStyle='rgba(52,38,18,0.6)';
+    g.beginPath();
+    g.moveTo(0,-P(0.020)); g.lineTo(P(0.013),0); g.lineTo(0,P(0.020)); g.lineTo(-P(0.013),0);
+    g.closePath(); g.fill();
+    g.restore();
+  }
+  /* edge vignette */
+  var vg=g.createRadialGradient(cx,cy,P(0.72),cx,cy,R);
+  vg.addColorStop(0,'rgba(30,20,8,0)'); vg.addColorStop(1,'rgba(30,20,8,0.45)');
+  g.fillStyle=vg; g.beginPath(); g.arc(cx,cy,R,0,7); g.fill();
+});
+M.dial.map=dialRestTex;
+M.dial.needsUpdate=true;
+
 var lightDialMat=new THREE.MeshStandardMaterial({map:dialLightTex,metalness:0.15,roughness:0.5,transparent:true,opacity:0,depthWrite:false,emissive:new THREE.Color(0xffd9a0),emissiveMap:dialLightTex,emissiveIntensity:0.1,clippingPlanes:[clipPG]});
 var shadowDialMat=new THREE.MeshStandardMaterial({map:dialShadowTex,metalness:0.2,roughness:0.5,transparent:true,opacity:0,depthWrite:false,emissive:new THREE.Color(0x8a5cff),emissiveMap:dialShadowTex,emissiveIntensity:0.14,clippingPlanes:[clipPV]});
 add(new THREE.CircleGeometry(1.0,128),lightDialMat,0,0,0.1515);
@@ -914,7 +973,7 @@ var AMBC=[0x3a3d46,0x4a3f2c,0x2c2340,0x40382a];
 var ACCC=['#c9b691','#ffd27a','#a98cff','#e6c493'];
 var STAR_GOLD=new THREE.Color(0xffb347), STAR_VIO=new THREE.Color(0x9a6cff);
 var T=[
-  /* 0 Ruhe */    {keyI:1.05,ambI:0.55,goldI:0.0,vioI:0.0, li:0,sh:0,tw:0, gGL:0,gGR:0,vVL:0,vVR:0, starE:0.0,starHue:0.5, glowG:0,glowGx:0,glowV:0,glowVx:0, raysO:0,vHaloO:0, orbitO:0,dustB:0, wispX:0,wispO:0, dark:0, clip:0, dOp:0},
+  /* 0 Ruhe */    {keyI:1.05,ambI:0.55,goldI:0.0,vioI:0.0, li:0,sh:0,tw:0, gGL:0,gGR:0,vVL:0,vVR:0, starE:0.0,starHue:0.5, glowG:0,glowGx:0,glowV:0,glowVx:0, raysO:0,vHaloO:0, orbitO:0,dustB:0, wispX:0,wispO:0, dark:0, clip:1.3, dOp:0},
   /* 1 Licht */   {keyI:1.15,ambI:0.62,goldI:1.5,vioI:0.0, li:1,sh:0,tw:0, gGL:0.8,gGR:0.8,vVL:0,vVR:0, starE:1.6,starHue:0.0, glowG:0.85,glowGx:0,glowV:0,glowVx:0, raysO:0.7,vHaloO:0, orbitO:0,dustB:0.5, wispX:0,wispO:0, dark:0, clip:1.3, dOp:1},
   /* 2 Schatten */{keyI:0.55,ambI:0.42,goldI:0.0,vioI:1.4, li:0,sh:1,tw:0, gGL:0,gGR:0,vVL:0.85,vVR:0.85, starE:1.4,starHue:1.0, glowG:0,glowGx:0,glowV:0.9,glowVx:0, raysO:0,vHaloO:0.75, orbitO:0,dustB:0.2, wispX:0,wispO:0.9, dark:1, clip:-1.3, dOp:1},
   /* 3 Zwielicht*/{keyI:0.92,ambI:0.5,goldI:1.15,vioI:1.15, li:0.55,sh:0.5,tw:1, gGL:0.7,gGR:0.05,vVL:0.05,vVR:0.7, starE:1.5,starHue:0.5, glowG:0.75,glowGx:-1.35,glowV:0.75,glowVx:1.35, raysO:0.42,vHaloO:0.42, orbitO:1,dustB:0.35, wispX:1.35,wispO:0.5, dark:0.55, clip:0, dOp:1}
@@ -1089,7 +1148,7 @@ renderer.setAnimationLoop(function(){
   var act=Math.max(P.li,P.sh,P.tw);
   var spls=0.85+0.15*Math.sin(elT*2.4);
   M.star.emissiveIntensity=P.starE*spls;
-  starVMat.emissiveIntensity=Math.max(0.18,P.starE)*spls;
+  starVMat.emissiveIntensity=P.starE*spls;
 
   /* full-face attunement dials */
   lightDialMat.opacity=P.dOp; shadowDialMat.opacity=P.dOp;
