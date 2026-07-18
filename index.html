@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Light &amp; Shadow — Weapon &amp; Inventory</title>
+<title>Light &amp; Shadow — Konzeptseiten</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -15,7 +15,7 @@
   }
   .wrap { max-width: 960px; margin: 0 auto; }
   h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: normal;
     letter-spacing: 0.06em;
     margin-bottom: 0.4rem;
@@ -36,6 +36,14 @@
     border-bottom: 1px solid #2a2a35;
     padding-bottom: 0.5rem;
     margin: 2.5rem 0 1.2rem;
+  }
+  h3 {
+    font-size: 0.95rem;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a8578;
+    margin: 1.8rem 0 0.9rem;
   }
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
   a.card {
@@ -58,6 +66,7 @@
     border-radius: 10px;
     overflow: hidden;
   }
+  figure.hero { grid-column: 1 / -1; }
   figure img { display: block; width: 100%; height: auto; }
   figcaption {
     padding: 0.7rem 1rem;
@@ -76,8 +85,34 @@
 </head>
 <body>
 <div class="wrap">
-  <h1><span class="light">Light</span> &amp; <span class="shadow">Shadow</span> — Weapon &amp; Inventory</h1>
+  <h1><span class="light">Light</span> &amp; <span class="shadow">Shadow</span></h1>
   <p class="sub">Konzeptseiten zu Waffen und Inventar-Relikten</p>
+
+  <h2>Gesamtkonzept</h2>
+  <div class="gallery">
+    <figure class="hero"><img src="concept_sheet.png" alt="Light &amp; Shadow — Gesamtkonzept" loading="lazy"><figcaption>Gesamtkonzept</figcaption></figure>
+  </div>
+
+  <h2>Konzeptzeichnungen</h2>
+
+  <h3>Waffen</h3>
+  <div class="gallery">
+    <figure><img src="spear_lightguide.png" alt="Speer — Lightguide" loading="lazy"><figcaption>Speer — Lightguide</figcaption></figure>
+    <figure><img src="bow_lightguide.png" alt="Bogen — Lightguide" loading="lazy"><figcaption>Bogen — Lightguide</figcaption></figure>
+  </div>
+
+  <h3>Skilltree</h3>
+  <div class="gallery">
+    <figure><img src="twilight_watch.png" alt="Twilight Watch" loading="lazy"><figcaption>Twilight Watch</figcaption></figure>
+    <figure><img src="twilight_pedestal.png" alt="Twilight Pedestal" loading="lazy"><figcaption>Twilight Pedestal</figcaption></figure>
+  </div>
+
+  <h3>Charaktere</h3>
+  <div class="gallery">
+    <figure><img src="heroine_sheet.png" alt="Heroine" loading="lazy"><figcaption>Heroine</figcaption></figure>
+    <figure><img src="light_production.png" alt="Light" loading="lazy"><figcaption>Light</figcaption></figure>
+    <figure><img src="shadow_sheet.png" alt="Shadow" loading="lazy"><figcaption>Shadow</figcaption></figure>
+  </div>
 
   <h2>Interaktive Seiten</h2>
   <div class="cards">
@@ -85,14 +120,14 @@
       <div class="name">Twilight Watch</div>
       <div class="desc">Produktions-Relikt — interaktive 3D-Ansicht.</div>
     </a>
-  </div>
-
-  <h2>Konzeptzeichnungen</h2>
-  <div class="gallery">
-    <figure><img src="twilight_watch.png" alt="Twilight Watch" loading="lazy"><figcaption>Twilight Watch</figcaption></figure>
-    <figure><img src="twilight_pedestal.png" alt="Twilight Pedestal" loading="lazy"><figcaption>Twilight Pedestal</figcaption></figure>
-    <figure><img src="bow_lightguide.png" alt="Bogen — Lightguide" loading="lazy"><figcaption>Bogen — Lightguide</figcaption></figure>
-    <figure><img src="spear_lightguide.png" alt="Speer — Lightguide" loading="lazy"><figcaption>Speer — Lightguide</figcaption></figure>
+    <a class="card" href="heroine_stage.html">
+      <div class="name">Heroine — Bühne</div>
+      <div class="desc">Interaktive Bühnen-Ansicht der Heldin.</div>
+    </a>
+    <a class="card" href="light_presentation.html">
+      <div class="name">Light — Präsentation</div>
+      <div class="desc">Konzept-Präsentation des Licht-Begleiters.</div>
+    </a>
   </div>
 
   <footer>Light &amp; Shadow — Konzeptmaterial, Stand Juli 2026</footer>
